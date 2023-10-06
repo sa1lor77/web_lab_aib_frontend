@@ -95,22 +95,21 @@
     obj.group = 'АИБ-3-043'
 
 
-    const FIO = () => {
-      return `${obj.surname} ${obj.firstName} ${obj.patronymic}`
-    }
+    obj.FIO = function() {
+        return `${this.surname} ${this.firstName} ${this.patronymic}`
+      }
 
-    const getFullInfo = () => {
-      const fullname = FIO('surname', 'firstName', 'patronymic')
-      const birthYear = obj.birthday
-      const personHobby = obj.hobby
+    obj.getFullInfo = function() {
+      const fullName = obj.FIO('surname', 'firstName', 'patronymic')
+      const birthYear = this.birthday
+      const personHobby = this.hobby
       const currentDate = new Date()
       const currentYear = currentDate.getFullYear()
-      age = currentYear - birthYear
-      return `ФИО: ${fullname}, \nГод рождения: ${birthYear}, \nХобби: ${personHobby},\nВозраст: ${age}`
-      // console.log(year)
+      const age = currentYear - birthYear
+      return `ФИО: ${fullName}, \nГод рождения: ${birthYear}, \nХобби: ${personHobby},\nВозраст: ${age}`
     }
 
-    alert(getFullInfo())
+    console.log(obj.getFullInfo())
 
 
     //Задача 5.2
