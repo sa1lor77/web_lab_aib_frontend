@@ -11,6 +11,10 @@ let red = 0;
 let green = 0;
 let blue = 0;
 
+if (localStorage.getItem('selectedColor')) {
+    localStorage.setItem("selectedColor", null);
+}
+
 colorContainer.addEventListener("click", (event) => {
   const clickedColorBlock = event.target.closest(".color__block");
 
@@ -21,11 +25,13 @@ colorContainer.addEventListener("click", (event) => {
 });
 
 inputs.forEach((input, index) => {
-  input.addEventListener("input", () => {
+  input.addEventListener("input", (event) => {
     let label = input.closest(".box__left-control").querySelector("label");
     if (input.value >= 0 && input.value <= 255) {
       input.style.borderColor = "green";
-      if (label.innerText == "red") {
+      const color = event.target.dataset['color'];
+      console.log(color);
+      if (color == "red") {
         red = +input.value;
       } else if (label.innerText == "green") {
         green = +input.value;
